@@ -1,0 +1,58 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="false"
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'over'"
+               [opened]="(isHandset$ | async) ? false : false">
+    <mat-toolbar>
+      <mat-icon class="userImage">account_circle</mat-icon>
+      <div class="userDetails">
+        <span class="user_name">{{'userName'}}</span>
+        <span class="user_email">{{'userEmail'}}</span>
+      </div>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="" routerLinkActive="active">
+        <mat-icon class="mat-list-icon">home</mat-icon>
+        Home
+      </a>
+      <a mat-list-item routerLink="" routerLinkActive="active">
+        <mat-icon class="mat-list-icon">label</mat-icon>
+        About
+      </a>
+      <a mat-list-item class="matFooter">
+        <a>About Us</a>
+        <a>Version 1.0</a>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="true"
+        matTooltip="Main Menu"
+        matTooltipPosition="right">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="app-main-name">ShopOLive</span>
+      <span class="spacer"></span>
+      <span class="logout_btn">
+        <button class="logout_btn" mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/select-tool">
+            <mat-icon class="mat-list-icon">home</mat-icon> Home
+          </button>
+          <button class="warn" mat-menu-item matTooltip="Logout" matTooltipPosition="left">
+            <mat-icon class="warn">exit_to_app</mat-icon> Logout
+          </button>
+        </mat-menu>
+      </span>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
